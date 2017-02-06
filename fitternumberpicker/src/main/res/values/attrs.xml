@@ -2,15 +2,15 @@
 <resources>
 
     <declare-styleable name="FitterNumberPicker">
-        <attr name="fnpMinValue" format="integer" />
-        <attr name="fnpMaxValue" format="integer" />
-        <attr name="fnpDefaultValue" format="integer" />
-        <attr name="fnpTextSize" format="dimension" />
-        <attr name="fnpTextColor" format="color" />
-        <attr name="fnpSeparatorColor" format="color" />
-        <attr name="fnpBackgroundColor" format="color" />
-        <attr name="fnpFocusValue" format="boolean" />
-        <attr name="fnpWrapValue" format="boolean" />
+        <attr name="fnp_minValue" format="integer" />
+        <attr name="fnp_maxValue" format="integer" />
+        <attr name="fnp_defaultValue" format="integer" />
+        <attr name="fnp_textSize" format="dimension" />
+        <attr name="fnp_textColor" format="color" />
+        <attr name="fnp_separatorColor" format="color" />
+        <attr name="fnp_backgroundColor" format="color" />
+        <attr name="fnp_focusValue" format="boolean" />
+        <attr name="fnp_wrapValue" format="boolean" />
     </declare-styleable>
 
 </resources>

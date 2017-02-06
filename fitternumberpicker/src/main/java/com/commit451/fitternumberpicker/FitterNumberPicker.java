@@ -78,23 +78,23 @@ public class FitterNumberPicker extends NumberPicker {
         for (int i = 0; i < a.getIndexCount(); ++i) {
 
             int attr = a.getIndex(i);
-            if (attr == R.styleable.FitterNumberPicker_fnpMinValue) {
+            if (attr == R.styleable.FitterNumberPicker_fnp_minValue) {
                 setMinValue(a.getInt(attr, MIN_VALUE));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpMaxValue) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_maxValue) {
                 setMaxValue(a.getInt(attr, MAX_VALUE));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpDefaultValue) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_defaultValue) {
                 setValue(a.getInt(attr, DEFAULT_VALUE));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpTextSize) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_textSize) {
                 setTextSize(a.getDimension(attr, TEXT_SIZE));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpTextColor) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_textColor) {
                 setTextColor(a.getColor(attr, TEXT_COLOR));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpSeparatorColor) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_separatorColor) {
                 setSeparatorColor(a.getColor(attr, SEPARATOR_COLOR));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpBackgroundColor) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_backgroundColor) {
                 setBackgroundColor(a.getColor(attr, BACKGROUND_COLOR));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpFocusValue) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_focusValue) {
                 setFocusability(a.getBoolean(attr, false));
-            } else if (attr == R.styleable.FitterNumberPicker_fnpWrapValue) {
+            } else if (attr == R.styleable.FitterNumberPicker_fnp_wrapValue) {
                 setWrapSelectorWheel(a.getBoolean(attr, false));
             }
         }

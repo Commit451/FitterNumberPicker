@@ -10,13 +10,13 @@ You can either define your `MaterialNumberPicker` via XML or programmatically :
 <com.commit451.fitternumberpicker.FitterNumberPicker
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:fnpMinValue="1"
-        app:fnpMaxValue="50"
-        app:fnpDefaultValue="10"
-        app:fnpBackgroundColor="@color/colorAccent"
-        app:fnpSeparatorColor="@color/colorAccent"
-        app:fnpTextColor="@color/colorPrimary"
-        app:fnpTextSize="25sp"/>
+        app:fnp_minValue="1"
+        app:fnp_maxValue="50"
+        app:fnp_fefaultValue="10"
+        app:fnp_backgroundColor="@color/colorAccent"
+        app:fnp_separatorColor="@color/colorAccent"
+        app:fnp_textColor="@color/colorPrimary"
+        app:fnp_textSize="25sp"/>
 ```
 
 ```java

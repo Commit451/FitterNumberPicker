@@ -52,12 +52,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:fnpDefaultValue="10"
-            app:fnpMaxValue="50"
-            app:fnpMinValue="1"
-            app:fnpSeparatorColor="@color/colorAccent"
-            app:fnpTextColor="@color/colorPrimary"
-            app:fnpTextSize="25sp" />
+            app:fnp_defaultValue="10"
+            app:fnp_maxValue="50"
+            app:fnp_minValue="1"
+            app:fnp_separatorColor="@color/colorAccent"
+            app:fnp_textColor="@color/colorPrimary"
+            app:fnp_textSize="25sp" />
 
     </LinearLayout>
 

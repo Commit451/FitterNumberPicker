@@ -7,8 +7,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
@@ -34,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mMaterialNumberPicker = (FitterNumberPicker) findViewById(R.id.material_number_picker);
 
-        mDefaultButton = (Button)findViewById(R.id.default_number_picker_button);
-        mSimpleButton = (Button)findViewById(R.id.simple_number_picker_button);
-        mCustomButton = (Button)findViewById(R.id.custom_number_picker_button);
+        mDefaultButton = (Button) findViewById(R.id.default_number_picker_button);
+        mSimpleButton = (Button) findViewById(R.id.simple_number_picker_button);
+        mCustomButton = (Button) findViewById(R.id.custom_number_picker_button);
 
         mDefaultButton.setOnClickListener(this);
         mSimpleButton.setOnClickListener(this);
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ViewConfiguration configuration = ViewConfiguration.get(this);
         //This would be a good value to start with, then / or * to adjust
         //By default, the velocity is divided by 8, so do what you want to adjust
-        int maxFlingVelocity =  configuration.getScaledMaximumFlingVelocity() / 6;
+        int maxFlingVelocity = configuration.getScaledMaximumFlingVelocity() / 6;
         mMaterialNumberPicker.setMaximumFlingVelocity(maxFlingVelocity);
     }
 
@@ -60,14 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             picker = new NumberPicker(this);
             picker.setMinValue(1);
             picker.setMaxValue(10);
-        }
-        else {
+        } else {
             FitterNumberPicker.Builder numberPickerBuilder = new FitterNumberPicker.Builder(this);
 
             if (v.equals(mSimpleButton)) {
                 alertTitle = getString(R.string.alert_simple_title);
-            }
-            else if (v.equals(mCustomButton)) {
+            } else if (v.equals(mCustomButton)) {
                 alertTitle = getString(R.string.alert_custom_title);
 
                 numberPickerBuilder
