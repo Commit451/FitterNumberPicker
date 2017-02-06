@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FitterNumberPicker">
+        <attr name="fnpMinValue" format="integer" />
+        <attr name="fnpMaxValue" format="integer" />
+        <attr name="fnpDefaultValue" format="integer" />
+        <attr name="fnpTextSize" format="dimension" />
+        <attr name="fnpTextColor" format="color" />
+        <attr name="fnpSeparatorColor" format="color" />
+        <attr name="fnpBackgroundColor" format="color" />
+        <attr name="fnpFocusValue" format="boolean" />
+        <attr name="fnpWrapValue" format="boolean" />
+    </declare-styleable>
+
+</resources>
