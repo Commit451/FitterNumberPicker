@@ -8,9 +8,8 @@
         <attr name="fnp_textSize" format="dimension" />
         <attr name="fnp_textColor" format="color" />
         <attr name="fnp_separatorColor" format="color" />
-        <attr name="fnp_backgroundColor" format="color" />
-        <attr name="fnp_focusValue" format="boolean" />
-        <attr name="fnp_wrapValue" format="boolean" />
+        <attr name="fnp_focusability" format="boolean" />
+        <attr name="fnp_wrapSelectorWheel" format="boolean" />
     </declare-styleable>
 
 </resources>
