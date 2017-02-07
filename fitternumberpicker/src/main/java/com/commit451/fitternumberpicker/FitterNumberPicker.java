@@ -35,28 +35,27 @@ import java.lang.reflect.Field;
  */
 public class FitterNumberPicker extends NumberPicker {
 
-    static int[] ANDROID_ATTRS = new int[] {
+    private static final int[] ANDROID_ATTRS = new int[]{
             android.R.attr.textSize,
             android.R.attr.textColor
     };
 
-    static int INDEX_OF_TEXT_SIZE = 0;
-    static int INDEX_OF_TEXT_COLOR = 1;
+    private static final int INDEX_OF_TEXT_SIZE = 0;
+    private static final int INDEX_OF_TEXT_COLOR = 1;
 
     private static float pixelsToSp(Context context, float px) {
         return px / context.getResources().getDisplayMetrics().scaledDensity;
     }
 
-    private int mTextColor;
-    private float mTextSize;
-    private int mSeparatorColor;
-    private boolean mEnableFocusability;
+    private int textColor;
+    private float textSize;
+    private int separatorColor;
 
-    private Paint mSelectorWheelPaint;
+    private Paint selectorWheelPaint;
 
     //Cache fields since reflection is kinda slow
-    private Field mPickerDividerField;
-    private Field mMaximumFlingVelocityField;
+    private Field fieldPickerDivider;
+    private Field fieldMaximumFlingVelocity;
 
     public FitterNumberPicker(Context context) {
         super(context);
@@ -125,16 +124,12 @@ public class FitterNumberPicker extends NumberPicker {
 
     @ColorInt
     public int getTextColor() {
-        return mTextColor;
+        return textColor;
     }
 
     @ColorInt
     public int getSeparatorColor() {
-        return mSeparatorColor;
-    }
-
-    public boolean isFocusabilityEnabled() {
-        return mEnableFocusability;
+        return separatorColor;
     }
 
     /**
@@ -144,20 +139,20 @@ public class FitterNumberPicker extends NumberPicker {
      * @return true if separator set, false if field was not accessible
      */
     public boolean setSeparatorColor(int separatorColor) {
-        mSeparatorColor = separatorColor;
-        if (mPickerDividerField == null) {
+        this.separatorColor = separatorColor;
+        if (fieldPickerDivider == null) {
             Field[] pickerFields = NumberPicker.class.getDeclaredFields();
             for (Field pf : pickerFields) {
                 if (pf.getName().equals("mSelectionDivider")) {
                     pf.setAccessible(true);
-                    mPickerDividerField = pf;
+                    fieldPickerDivider = pf;
                     break;
                 }
             }
         }
-        if (mPickerDividerField != null) {
+        if (fieldPickerDivider != null) {
             try {
-                mPickerDividerField.set(this, new ColorDrawable(separatorColor));
+                fieldPickerDivider.set(this, new ColorDrawable(separatorColor));
             } catch (IllegalAccessException | IllegalArgumentException e) {
                 return false;
             }
@@ -171,21 +166,26 @@ public class FitterNumberPicker extends NumberPicker {
      * Uses reflection to access text color private attribute for both wheel and edit text inside the number picker.
      */
     public void setTextColor(int textColor) {
-        mTextColor = textColor;
+        this.textColor = textColor;
         updateTextAttributes();
     }
 
     /**
      * Uses reflection to access text size private attribute for both wheel and edit text inside the number picker.
+     *
      * @param textSize text size in pixels
      */
     public void setTextSize(float textSize) {
-        mTextSize = textSize;
+        this.textSize = textSize;
         updateTextAttributes();
     }
 
+    /**
+     * Blocks focusability for children, meaning you cannot type in a custom value in the {@link NumberPicker}
+     *
+     * @param isFocusable true if you want to allow focus in the {@link EditText}s, false if not
+     */
     public void setFocusability(boolean isFocusable) {
-        mEnableFocusability = isFocusable;
         setDescendantFocusability(isFocusable ? FOCUS_AFTER_DESCENDANTS : FOCUS_BLOCK_DESCENDANTS);
     }
 
@@ -196,17 +196,17 @@ public class FitterNumberPicker extends NumberPicker {
      * @return true if it worked, false otherwise
      */
     public boolean setMaximumFlingVelocity(int maximumFlingVelocity) {
-        if (mMaximumFlingVelocityField == null) {
+        if (fieldMaximumFlingVelocity == null) {
             try {
                 Field field = NumberPicker.class.getDeclaredField("mMaximumFlingVelocity");
                 field.setAccessible(true);
-                mMaximumFlingVelocityField = field;
+                fieldMaximumFlingVelocity = field;
             } catch (Exception e) {
                 return false;
             }
         }
         try {
-            mMaximumFlingVelocityField.set(this, maximumFlingVelocity);
+            fieldMaximumFlingVelocity.set(this, maximumFlingVelocity);
         } catch (Exception e) {
             return false;
         }
@@ -221,28 +221,27 @@ public class FitterNumberPicker extends NumberPicker {
             View child = getChildAt(i);
             if (child instanceof EditText) {
                 EditText editText = ((EditText) child);
-                editText.setTextColor(mTextColor);
-                editText.setTextSize(pixelsToSp(getContext(), mTextSize));
+                editText.setTextColor(textColor);
+                editText.setTextSize(pixelsToSp(getContext(), textSize));
                 editText.invalidate();
             }
         }
     }
 
     private boolean updateSelectorWheelPaint() {
-        if (mSelectorWheelPaint == null) {
+        if (selectorWheelPaint == null) {
             try {
                 Field selectorWheelPaintField = NumberPicker.class.getDeclaredField("mSelectorWheelPaint");
                 selectorWheelPaintField.setAccessible(true);
 
-                mSelectorWheelPaint = ((Paint) selectorWheelPaintField.get(this));
+                selectorWheelPaint = ((Paint) selectorWheelPaintField.get(this));
             } catch (Exception e) {
                 return false;
             }
-
         }
-        if (mSelectorWheelPaint != null) {
-            mSelectorWheelPaint.setColor(mTextColor);
-            mSelectorWheelPaint.setTextSize(mTextSize);
+        if (selectorWheelPaint != null) {
+            selectorWheelPaint.setColor(textColor);
+            selectorWheelPaint.setTextSize(textSize);
             invalidate();
             return true;
         }

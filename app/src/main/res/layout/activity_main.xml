@@ -72,7 +72,7 @@
                 app:fnp_focusability="false"
                 app:fnp_maxValue="10"
                 app:fnp_minValue="1"
-                app:fnp_wrapSelectorWheel="true"
+                app:fnp_wrapSelectorWheel="false"
                 app:fnp_separatorColor="@android:color/transparent" />
 
         </LinearLayout>

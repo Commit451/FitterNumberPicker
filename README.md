@@ -4,51 +4,23 @@
 
 ## Usage
 
-You can either define your `MaterialNumberPicker` via XML or programmatically :
+To easily use in XML:
 
 ```xml
 <com.commit451.fitternumberpicker.FitterNumberPicker
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:fnp_minValue="1"
-        app:fnp_maxValue="50"
-        app:fnp_fefaultValue="10"
-        app:fnp_backgroundColor="@color/colorAccent"
-        app:fnp_separatorColor="@color/colorAccent"
-        app:fnp_textColor="@color/colorPrimary"
-        app:fnp_textSize="25sp"/>
+    android:id="@+id/custom_number_picker"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:textSize="22sp"
+    android:textColor="@color/colorPrimary"
+    app:fnp_focusability="false"
+    app:fnp_minValue="1"
+    app:fnp_maxValue="10"
+    app:fnp_value="5"
+    app:fnp_wrapSelectorWheel="false"
+    app:fnp_separatorColor="@android:color/transparent" />
 ```
-
-```java
-FitterNumberPicker numberPicker = new FitterNumberPicker.Builder(context)
-                .minValue(1)
-                .maxValue(10)
-                .defaultValue(1)
-                .backgroundColor(Color.WHITE)
-                .separatorColor(Color.TRANSPARENT)
-                .textColor(Color.BLACK)
-                .textSize(20)
-                .enableFocusability(false)
-                .wrapSelectorWheel(true)
-                .build();
-```
-
-The latter option only builds the picker for you. It is up to you how you want to display the picker. You can as well insert it in any `ViewGroup` or inside an `AlertDialog` as a custom view.
-
-````java
-new AlertDialog.Builder(this)
-                .setTitle(yourTitle)
-                .setView(numberPicker)
-                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Snackbar.make(findViewById(R.id.your_container), "You picked : " + numberPicker.getValue(), Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .show();
-```
-
-By default there is no `NumberPicker.Formatter` when you build your `MaterialNumberPicker` but you can easily attach one to it using the `formatter` builder proprety.
 
 # Acknowledgements
 Forked from [MaterialNumberPicker](https://github.com/KasualBusiness/MaterialNumberPicker).
