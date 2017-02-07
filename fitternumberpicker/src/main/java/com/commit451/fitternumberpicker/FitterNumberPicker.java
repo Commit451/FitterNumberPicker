@@ -35,6 +35,14 @@ import java.lang.reflect.Field;
  */
 public class FitterNumberPicker extends NumberPicker {
 
+    static int[] ANDROID_ATTRS = new int[] {
+            android.R.attr.textSize,
+            android.R.attr.textColor
+    };
+
+    static int INDEX_OF_TEXT_SIZE = 0;
+    static int INDEX_OF_TEXT_COLOR = 1;
+
     private static float pixelsToSp(Context context, float px) {
         return px / context.getResources().getDisplayMetrics().scaledDensity;
     }
@@ -59,6 +67,21 @@ public class FitterNumberPicker extends NumberPicker {
         super(context, attributeSet);
         initView();
 
+        //Parse Android attributes
+        TypedArray android = context.obtainStyledAttributes(attributeSet, ANDROID_ATTRS);
+
+        if (android.hasValue(INDEX_OF_TEXT_SIZE)) {
+            float size = android.getDimensionPixelSize(INDEX_OF_TEXT_SIZE, 0);
+            setTextSize(size);
+        }
+        if (android.hasValue(INDEX_OF_TEXT_COLOR)) {
+            //noinspection ResourceType
+            setTextColor(android.getColor(INDEX_OF_TEXT_COLOR, Color.BLACK));
+        }
+
+        android.recycle();
+
+        //Parse custom attributes
         TypedArray a = context.obtainStyledAttributes(attributeSet, R.styleable.FitterNumberPicker);
 
         if (a.hasValue(R.styleable.FitterNumberPicker_fnp_minValue)) {
@@ -67,15 +90,8 @@ public class FitterNumberPicker extends NumberPicker {
         if (a.hasValue(R.styleable.FitterNumberPicker_fnp_maxValue)) {
             setMaxValue(a.getInt(R.styleable.FitterNumberPicker_fnp_maxValue, 0));
         }
-        if (a.hasValue(R.styleable.FitterNumberPicker_fnp_defaultValue)) {
-            setValue(a.getInt(R.styleable.FitterNumberPicker_fnp_defaultValue, 0));
-        }
-        if (a.hasValue(R.styleable.FitterNumberPicker_fnp_textSize)) {
-            float size = a.getDimensionPixelSize(R.styleable.FitterNumberPicker_fnp_textSize, 0);
-            setTextSize(size);
-        }
-        if (a.hasValue(R.styleable.FitterNumberPicker_fnp_textColor)) {
-            setTextColor(a.getColor(R.styleable.FitterNumberPicker_fnp_textColor, Color.BLACK));
+        if (a.hasValue(R.styleable.FitterNumberPicker_fnp_value)) {
+            setValue(a.getInt(R.styleable.FitterNumberPicker_fnp_value, 0));
         }
         if (a.hasValue(R.styleable.FitterNumberPicker_fnp_separatorColor)) {
             setSeparatorColor(a.getColor(R.styleable.FitterNumberPicker_fnp_separatorColor, Color.TRANSPARENT));

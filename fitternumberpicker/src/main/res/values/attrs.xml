@@ -4,9 +4,7 @@
     <declare-styleable name="FitterNumberPicker">
         <attr name="fnp_minValue" format="integer" />
         <attr name="fnp_maxValue" format="integer" />
-        <attr name="fnp_defaultValue" format="integer" />
-        <attr name="fnp_textSize" format="dimension" />
-        <attr name="fnp_textColor" format="color" />
+        <attr name="fnp_value" format="integer" />
         <attr name="fnp_separatorColor" format="color" />
         <attr name="fnp_focusability" format="boolean" />
         <attr name="fnp_wrapSelectorWheel" format="boolean" />

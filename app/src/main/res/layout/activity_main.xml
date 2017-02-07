@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:fnp_defaultValue="5"
+                app:fnp_value="5"
                 app:fnp_maxValue="10"
                 app:fnp_minValue="1" />
 
@@ -66,14 +66,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:fnp_defaultValue="5"
+                android:textSize="33sp"
+                android:textColor="@color/colorPrimary"
+                app:fnp_value="5"
                 app:fnp_focusability="false"
                 app:fnp_maxValue="10"
                 app:fnp_minValue="1"
                 app:fnp_wrapSelectorWheel="true"
-                app:fnp_separatorColor="@android:color/transparent"
-                app:fnp_textColor="@color/colorPrimary"
-                app:fnp_textSize="25sp" />
+                app:fnp_separatorColor="@android:color/transparent" />
 
         </LinearLayout>
 
